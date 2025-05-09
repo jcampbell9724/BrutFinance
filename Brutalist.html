@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Design Archive</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background-color: #ffffff;
+            color: #000000;
+            line-height: 1.6;
+            padding: 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        
+        body.dark-mode {
+            background-color: #0f0f0f;
+            color: #ffffff;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.03em;
+            position: relative;
+        }
+        
+        h1.glitch-effect {
+            position: relative;
+            animation: glitch 0.5s infinite;
+        }
+        
+        @keyframes glitch {
+            0% { transform: translate(0) }
+            20% { transform: translate(-2px, 2px) }
+            40% { transform: translate(-2px, -2px) }
+            60% { transform: translate(2px, 2px) }
+            80% { transform: translate(2px, -2px) }
+            100% { transform: translate(0) }
+        }
+        
+        .prompt-container {
+            margin: 3rem 0;
+            border: 1px solid currentColor;
+            padding: 2rem;
+            position: relative;
+            transition: transform 0.3s;
+        }
+        
+        .prompt-container:hover {
+            transform: translateY(-5px);
+        }
+        
+        .prompt-container::before {
+            content: "{ prompt }";
+            position: absolute;
+            top: -12px;
+            left: 20px;
+            background: inherit;
+            padding: 0 10px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        
+        .prompt-text {
+            font-family: monospace;
+            white-space: pre-wrap;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            max-height: 150px;
+            overflow: hidden;
+            position: relative;
+            transition: max-height 0.5s;
+        }
+        
+        .prompt-text.expanded {
+            max-height: 2000px;
+        }
+        
+        .prompt-container::after {
+            content: "[ click to expand ]";
+            position: absolute;
+            bottom: 10px;
+            right: 20px;
+            font-size: 0.8rem;
+            font-style: italic;
+            opacity: 0.6;
+        }
+        
+        .prompt-container.expanded::after {
+            content: "[ click to collapse ]";
+        }
+        
+        .styles-container {
+            margin-top: 4rem;
+        }
+        
+        .styles-heading {
+            display: flex;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+        
+        .styles-heading h2 {
+            font-size: 1.8rem;
+            font-weight: 500;
+            letter-spacing: -0.03em;
+        }
+        
+        .styles-heading::before,
+        .styles-heading::after {
+            content: "[";
+            font-size: 2.5rem;
+            margin-right: 15px;
+            font-weight: 300;
+        }
+        
+        .styles-heading::after {
+            content: "]";
+            margin-right: 0;
+            margin-left: 15px;
+        }
+        
+        .styles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .style-card {
+            border: 1px solid currentColor;
+            position: relative;
+            transition: all 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 0.6s forwards;
+            overflow: hidden;
+        }
+        
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .style-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .style-card::before {
+            content: "{";
+            position: absolute;
+            top: 50%;
+            left: -15px;
+            transform: translateY(-50%);
+            font-size: 2rem;
+            opacity: 0;
+            transition: opacity 0.2s ease;
+        }
+        
+        .style-card:hover::before {
+            opacity: 1;
+        }
+        
+        .style-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+        
+        .style-card:hover img {
+            transform: scale(1.05);
+        }
+        
+        .style-info {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .style-title {
+            font-size: 1.4rem;
+            font-weight: 500;
+            margin-bottom: 0.7rem;
+            letter-spacing: -0.02em;
+        }
+        
+        .style-desc {
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+        
+        .style-link {
+            display: inline-block;
+            text-decoration: none;
+            color: inherit;
+            font-weight: 500;
+            border-bottom: 1px solid currentColor;
+            align-self: flex-start;
+            padding-bottom: 2px;
+        }
+        
+        .style-link:hover {
+            border-bottom-width: 2px;
+        }
+        
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid currentColor;
+        }
+        
+        .logo {
+            font-weight: 700;
+            font-size: 1.2rem;
+            letter-spacing: -0.03em;
+        }
+        
+        .nav a {
+            text-decoration: none;
+            color: inherit;
+            margin-left: 2rem;
+            font-size: 0.9rem;
+        }
+        
+        .nav a:hover {
+            text-decoration: underline;
+        }
+        
+        footer {
+            margin-top: 5rem;
+            padding-top: 2rem;
+            border-top: 1px solid currentColor;
+            font-size: 0.8rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .theme-toggle {
+            background: none;
+            border: 1px solid currentColor;
+            color: inherit;
+            font-family: inherit;
+            padding: 8px 15px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: all 0.3s;
+        }
+        
+        .theme-toggle:hover {
+            background-color: #000;
+            color: #fff;
+        }
+        
+        .dark-mode .theme-toggle:hover {
+            background-color: #fff;
+            color: #000;
+        }
+        
+        .empty-state {
+            text-align: center;
+            padding: 50px;
+            border: 1px dashed currentColor;
+        }
+        
+        .empty-state h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .empty-state p {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 30px;
+            font-style: italic;
+        }
+        
+        .add-style-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: none;
+            border: 1px solid currentColor;
+            color: inherit;
+            font-family: inherit;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+        
+        .add-style-btn:hover {
+            background-color: #000;
+            color: #fff;
+        }
+        
+        .dark-mode .add-style-btn:hover {
+            background-color: #fff;
+            color: #000;
+        }
+        
+        .error-msg {
+            color: #ff3333;
+            padding: 20px;
+            text-align: center;
+            display: none;
+        }
+        
+        .style-status {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 3px 8px;
+            font-size: 0.7rem;
+            border-radius: 2px;
+            background-color: #000;
+            color: #fff;
+            z-index: 1;
+        }
+        
+        .dark-mode .style-status {
+            background-color: #fff;
+            color: #000;
+        }
+        
+        /* Custom cursor */
+        .cursor-follower {
+            position: fixed;
+            width: 30px;
+            height: 30px;
+            border: 1px solid currentColor;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            z-index: 9999;
+            transition: width 0.2s, height 0.2s, background-color 0.2s;
+            mix-blend-mode: difference;
+        }
+        
+        .cursor-dot {
+            position: fixed;
+            width: 5px;
+            height: 5px;
+            background-color: currentColor;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            z-index: 10000;
+            mix-blend-mode: difference;
+        }
+        
+        .random-style-btn {
+            margin-left: 2rem;
+            cursor: pointer;
+            position: relative;
+            text-decoration: none;
+            color: inherit;
+            font-size: 0.9rem;
+        }
+        
+        .random-style-btn:hover {
+            text-decoration: underline;
+        }
+        
+        .style-tags {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            z-index: 2;
+            display: flex;
+            gap: 5px;
+            flex-wrap: wrap;
+        }
+        
+        .tag {
+            padding: 3px 8px;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            font-size: 0.7rem;
+            border-radius: 3px;
+            backdrop-filter: blur(5px);
+        }
+        
+        .dark-mode .tag {
+            background: rgba(255, 255, 255, 0.7);
+            color: black;
+        }
+        
+        .style-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1rem;
+            font-size: 0.8rem;
+        }
+        
+        .last-modified {
+            opacity: 0.7;
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                padding: 20px;
+            }
+            
+            .styles-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .nav {
+                margin-top: 1rem;
+            }
+            
+            .nav a {
+                margin-left: 0;
+                margin-right: 1rem;
+            }
+            
+            .cursor-follower, .cursor-dot {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="cursor-follower"></div>
+    <div class="cursor-dot"></div>
+    
+    <div class="header">
+        <div class="logo">DESIGN.ARCHIVE</div>
+        <nav class="nav">
+            <a href="#">ABOUT</a>
+            <a href="#">ALL STYLES</a>
+            <a href="./how-its-made.html">HOW IT'S MADE</a>
+            <a href="#" class="refresh-btn">REFRESH</a>
+            <a href="#" class="random-style-btn">RANDOM STYLE</a>
+        </nav>
+    </div>
+    
+    <h1>A curated collection of design aesthetics.</h1>
+    
+    <div class="prompt-container">
+        <div class="prompt-text">I am going to make a passion project. Can you give me an idea for a topic? I want to make a brutalist website
+        
+...
+
+kk. lit. im gonna make a site for all the different styles and aesthetics I like. I'll probablky update it sporadically. 
+
+actually your gonna do it.
+
+make a main page. make it minimalistic. like a straight up white page with just a screenshot of this prompt and all the design styles under - or above. you have createive contrl on this one - black and white design. atlaqs grotesque or somemthing like that for the font. Lets add curly { or regular [ brackets to keep the design weird. 
+
+kk. get 2 work</div>
+    </div>
+    
+    <div class="styles-container">
+        <div class="styles-heading">
+            <h2>DESIGN STYLES</h2>
+        </div>
+        
+        <div class="error-msg" id="error-msg">There was an error scanning for styles. Check the console for details.</div>
+        
+        <div class="loading" id="loading">Scanning for styles...</div>
+        
+        <div class="styles-grid" id="styles-grid"></div>
+        
+        <div class="empty-state" id="empty-state" style="display: none;">
+            <h3>No styles found yet</h3>
+            <p>Add your first style by creating a folder with an index.html file. Each style should be in its own folder.</p>
+            <a href="./how-its-made.html" class="add-style-btn">SEE HOW IT WORKS</a>
+        </div>
+    </div>
+    
+    <footer>
+        <div>DESIGN.ARCHIVE © 2025</div>
+        <button class="theme-toggle" id="theme-toggle">TOGGLE THEME</button>
+        <div>UPDATED SPORADICALLY</div>
+    </footer>
+    
+    <script>
+        // Style descriptions for when metadata isn't available
+        const styleDescriptions = {
+            'brutalist': 'Raw, unfiltered web design that exposes structural elements and embraces digital imperfection.',
+            'digital-decay': 'Visualizing the concept of digital impermanence with raw data and harsh typography.',
+            'brutalist-chaos': 'Experimental animations with glitches, random elements, and interactive chaos.',
+            'minimalist': 'Clean, restrained design focused on typography and white space.',
+            'neobrutalism': 'Modern take on brutalism with bold colors, strong shadows, and chunky elements.',
+            'terminal': 'Command-line inspired interfaces with monospace typography and minimal decoration.'
+        };
+
+        // Custom cursor
+        const cursorFollower = document.querySelector('.cursor-follower');
+        const cursorDot = document.querySelector('.cursor-dot');
+
+        if (window.matchMedia("(min-width: 768px)").matches) {
+            document.addEventListener('mousemove', (e) => {
+                cursorFollower.style.left = e.clientX + 'px';
+                cursorFollower.style.top = e.clientY + 'px';
+                cursorDot.style.left = e.clientX + 'px';
+                cursorDot.style.top = e.clientY + 'px';
+            });
+            
+            document.addEventListener('mousedown', () => {
+                cursorFollower.style.width = '25px';
+                cursorFollower.style.height = '25px';
+            });
+            
+            document.addEventListener('mouseup', () => {
+                cursorFollower.style.width = '30px';
+                cursorFollower.style.height = '30px';
+            });
+            
+            // Link hover effect
+            const links = document.querySelectorAll('a, button');
+            links.forEach(link => {
+                link.addEventListener('mouseenter', () => {
+                    cursorFollower.style.width = '50px';
+                    cursorFollower.style.height = '50px';
+                    cursorFollower.style.border = '1px solid currentColor';
+                    cursorFollower.style.backgroundColor = 'rgba(255,255,255,0.1)';
+                });
+                
+                link.addEventListener('mouseleave', () => {
+                    cursorFollower.style.width = '30px';
+                    cursorFollower.style.height = '30px';
+                    cursorFollower.style.border = '1px solid currentColor';
+                    cursorFollower.style.backgroundColor = 'transparent';
+                });
+            });
+        }
+
+        // Prompt container expand/collapse
+        const promptContainer = document.querySelector('.prompt-container');
+        const promptText = document.querySelector('.prompt-text');
+
+        promptContainer.addEventListener('click', () => {
+            promptText.classList.toggle('expanded');
+            promptContainer.classList.toggle('expanded');
+        });
+
+        // Theme toggle
+        const themeToggle = document.getElementById('theme-toggle');
+
+        // Check for saved theme preference
+        if (localStorage.getItem('theme') === 'dark') {
+            document.body.classList.add('dark-mode');
+        }
+
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            
+            // Save theme preference
+            if (document.body.classList.contains('dark-mode')) {
+                localStorage.setItem('theme', 'dark');
+            } else {
+                localStorage.setItem('theme', 'light');
+            }
+        });
+
+        // Random style link
+        const randomStyleLink = document.querySelector('.random-style-btn');
+
+        randomStyleLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            
+            const styleLinks = document.querySelectorAll('.style-link:not([disabled])');
+            if (styleLinks.length === 0) return;
+            
+            const randomIndex = Math.floor(Math.random() * styleLinks.length);
+            const randomLink = styleLinks[randomIndex];
+            
+            // Add a glitch effect before navigating
+            document.body.style.opacity = '0.8';
+            setTimeout(() => {
+                window.location.href = randomLink.getAttribute('href');
+            }, 500);
+        });
+
+        // Random glitch effect on title
+        const title = document.querySelector('h1');
+
+        function triggerGlitch() {
+            title.classList.add('glitch-effect');
+            setTimeout(() => {
+                title.classList.remove('glitch-effect');
+            }, 2000);
+            
+            // Schedule next glitch
+            const nextGlitch = Math.random() * 10000 + 5000;
+            setTimeout(triggerGlitch, nextGlitch);
+        }
+
+        setTimeout(triggerGlitch, 3000);
+
+        // ============================
+        // DYNAMIC CONTENT LOADING
+        // ============================
+
+        // Function to load style folders dynamically
+        async function loadStyles() {
+            const stylesGrid = document.getElementById('styles-grid');
+            const loadingIndicator = document.getElementById('loading');
+            const emptyState = document.getElementById('empty-state');
+            const errorMsg = document.getElementById('error-msg');
+            
+            stylesGrid.innerHTML = '';
+            loadingIndicator.style.display = 'block';
+            emptyState.style.display = 'none';
+            errorMsg.style.display = 'none';
+            
+            try {
+                const styles = await scanForStyles();
+                
+                if (styles.length === 0) {
+                    loadingIndicator.style.display = 'none';
+                    emptyState.style.display = 'block';
+                    return;
+                }
+                
+                // Create style cards with staggered animations
+                styles.forEach((style, index) => {
+                    const card = createStyleCard(style, index);
+                    stylesGrid.appendChild(card);
+                });
+                
+                loadingIndicator.style.display = 'none';
+                
+            } catch (error) {
+                console.error('Error loading styles:', error);
+                loadingIndicator.style.display = 'none';
+                errorMsg.style.display = 'block';
+            }
+        }
+
+        // Scan for HTML files that represent styles
+        async function scanForStyles() {
+            try {
+                const response = await fetch('/api/scan-styles');
+                if (!response.ok) throw new Error('Failed to scan styles');
+                
+                const files = await response.json();
+                
+                return files.map(file => {
+                    const title = file.name.replace('.html', '').split('-')
+                        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+                        .join(' ');
+                    
+                    return {
+                        id: file.name.replace('.html', ''),
+                        title: title,
+                        path: `./${file.name}`,
+                        description: `A unique design style exploring ${title.toLowerCase()} aesthetics.`,
+                        status: 'ready'
+                    };
+                });
+            } catch (error) {
+                console.error('Error scanning styles:', error);
+                return [];
+            }
+        }
+
+        // Create a style card element
+        function createStyleCard(style, index) {
+            const card = document.createElement('div');
+            card.className = 'style-card';
+            card.style.animationDelay = `${index * 150}ms`;
+            
+            // Apply style-specific background color if available
+            if (style.backgroundColor) {
+                card.style.backgroundColor = style.backgroundColor;
+                // Ensure text is readable by inverting colors if background is dark
+                const isBackgroundDark = style.backgroundColor.match(/^#[0-9A-F]{6}$/i) 
+                    ? parseInt(style.backgroundColor.substring(1), 16) < 0x808080
+                    : false;
+                if (isBackgroundDark) {
+                    card.style.color = '#ffffff';
+                }
+            }
+            
+            const cardHTML = `
+                <div class="style-card-bg"></div>
+                ${style.tags && style.tags.length > 0 ? `
+                    <div class="style-tags">
+                        ${style.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+                    </div>
+                ` : ''}
+                <img src="${style.image || `/api/placeholder/600/400?text=${encodeURIComponent(style.title)}`}" 
+                     alt="${style.title}" 
+                     onerror="this.src='/api/placeholder/600/400?text=${encodeURIComponent(style.title)}'">
+                <div class="style-info">
+                    <h3 class="style-title">${style.title}</h3>
+                    <p class="style-desc">${style.description}</p>
+                    <div class="style-meta">
+                        <span class="last-modified">Updated: ${new Date(style.lastModified).toLocaleDateString()}</span>
+                        <a href="${style.path}" class="style-link">EXPLORE STYLE</a>
+                    </div>
+                </div>
+            `;
+            
+            card.innerHTML = cardHTML;
+            
+            // Add hover effect that matches the style's color scheme
+            card.addEventListener('mouseenter', () => {
+                if (style.backgroundColor) {
+                    card.style.transform = 'translateY(-10px)';
+                    card.style.boxShadow = `0 10px 20px ${style.backgroundColor}33`;
+                }
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = '';
+                card.style.boxShadow = '';
+            });
+            
+            return card;
+        }
+
+        // Refresh button functionality
+        document.querySelector('.refresh-btn').addEventListener('click', (e) => {
+            e.preventDefault();
+            loadStyles();
+        });
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', () => {
+            loadStyles();
+        });
+    </script>
+</body>
+</html>
