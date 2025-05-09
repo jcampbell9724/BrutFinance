@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My App Showcase - Multi-Theme</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <link id="theme-brutalist" href="brutalist.css" rel="stylesheet">
+    <link id="theme-clean" href="clean-modern.css" rel="stylesheet" disabled>
+
+    <link href="style.css" rel="stylesheet">
+
+</head>
+<body>
+
+    <header class="page-header">
+        <h1>App Hub</h1>
+        <button id="themeSwitcherButton" class="theme-button">Switch Theme</button>
+    </header>
+
+    <main class="main-content">
+        <div class="app-grid" id="appGridContainer">
+            </div>
+    </main>
+
+    <footer class="page-footer">
+        <p>&copy; <span id="currentYear"></span> COMPANY NAME. ALL SYSTEMS OPERATIONAL.</p>
+    </footer>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
+```css
+/* style.css - Base styles or styles shared across themes (can be minimal) */
+
+/* Basic Reset (can also be here or in each theme if they need different resets) */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    /*
+      Define base font family here if it's common,
+      otherwise, each theme can define its own.
+      For this example, themes will define their fonts.
+    */
+    line-height: 1.6;
+    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth theme transitions */
+    padding-bottom: 2rem; /* Ensure space for footer */
+}
+
+/*
+  Shared layout for header, main, footer could go here if they
+  don't change drastically between themes. For this example,
+  themes will control most of their specific layout aspects.
+*/
+
+.main-content {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.app-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem; /* Default gap, can be overridden by themes */
+}
+
+/* Theme switcher button base style */
+.theme-button {
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif; /* A neutral font for the button */
+    font-weight: 500;
+    border: 1px solid transparent; /* Base border */
+    margin-top: 0.5rem; /* Space from title if header is flex */
+}
+
+/*
+  The .page-header, .app-card, .page-footer specific styles
+  will be defined in the theme CSS files (brutalist.css, clean-modern.css)
+  as they are highly theme-dependent.
+*/
+```css
+/* brutalist.css - Brutalist Theme Styles */
+
+body {
+    font-family: 'Roboto Mono', monospace;
+    background-color: #e0e0e0;
+    color: #000000;
+}
+
+.page-header {
+    background-color: #000000;
+    color: #ffffff;
+    padding: 1.5rem 1rem;
+    text-align: center;
+    border-bottom: 4px solid #000000;
+    margin-bottom: 2rem;
+    display: flex; /* For aligning title and button */
+    flex-direction: column;
+    align-items: center;
+}
+
+.page-header h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem; /* Space for button */
+}
+
+.theme-button { /* Brutalist theme button */
+    background-color: #0000ff;
+    color: #ffffff;
+    border: 2px solid #000000;
+    text-transform: uppercase;
+    font-family: 'Roboto Mono', monospace;
+}
+
+.theme-button:hover {
+    background-color: #ffffff;
+    color: #0000ff;
+}
+
+.app-grid {
+     gap: 2rem; /* Brutalist specific gap */
+}
+
+.app-card {
+    background-color: #ffffff;
+    border: 3px solid #000000;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    transition: background-color 0.1s linear, color 0.1s linear;
+}
+
+.app-card:hover {
+    background-color: #000000;
+    color: #ffffff;
+}
+
+.app-card:hover .app-link {
+    background-color: #ffffff;
+    color: #000000;
+    border-color: #000000; /* Ensure border color is explicit */
+}
+
+.app-card:hover h2 {
+    color: #ffffff;
+}
+.app-card:hover .app-icon-placeholder {
+    background-color: #333333;
+    color: #ffffff;
+    border: 2px dashed #ffffff;
+}
+
+.app-card .app-icon-placeholder {
+    width: 50px;
+    height: 50px;
+    background-color: #cccccc;
+    border: 2px dashed #000000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+    color: #000000;
+    align-self: flex-start;
+    font-weight: 700;
+}
+
+.app-card h2 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #000000;
+    margin-bottom: 0.75rem;
+    text-transform: uppercase;
+}
+
+.app-card p {
+    font-size: 0.9rem;
+    color: #333333;
+    margin-bottom: 1.5rem;
+    flex-grow: 1;
+}
+.app-card:hover p {
+    color: #e0e0e0;
+}
+
+.app-card .app-link {
+    display: inline-block;
+    background-color: #0000ff;
+    color: #ffffff;
+    padding: 0.75rem 1.25rem;
+    text-decoration: none;
+    text-align: center;
+    font-weight: 700;
+    border: 2px solid #000000;
+    text-transform: uppercase;
+    align-self: flex-start;
+    transition: background-color 0.1s linear, color 0.1s linear;
+}
+
+.app-card .app-link:hover {
+    background-color: #ffffff;
+    color: #0000ff;
+}
+
+.page-footer {
+    text-align: center;
+    padding: 1.5rem 1rem;
+    margin-top: 3rem;
+    font-size: 0.8rem;
+    color: #000000;
+    border-top: 3px solid #000000;
+    background-color: #cccccc;
+}
+```css
+/* clean-modern.css - Clean & Modern Theme Styles */
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f4f7f9; /* Light, clean background */
+    color: #333;
+}
+
+.page-header {
+    background-color: #ffffff;
+    color: #2c3e50; /* Dark blue-gray text */
+    padding: 1.5rem 1rem; /* Ample padding */
+    text-align: center;
+    border-bottom: 1px solid #e0e0e0; /* Subtle border */
+    margin-bottom: 2.5rem;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05); /* Soft shadow */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.page-header h1 {
+    font-size: 2.2rem;
+    font-weight: 600; /* Slightly less bold than brutalist */
+    margin-bottom: 0.5rem;
+}
+
+.theme-button { /* Clean & Modern theme button */
+    background-color: #3498db; /* Primary blue */
+    color: #ffffff;
+    border-radius: 5px; /* Rounded corners */
+    font-weight: 500;
+    border: 1px solid transparent;
+}
+
+.theme-button:hover {
+    background-color: #2980b9; /* Darker blue */
+}
+
+.app-grid {
+     gap: 1.5rem; /* Standard gap */
+}
+
+.app-card {
+    background-color: #ffffff;
+    border: 1px solid #dce4ec; /* Lighter border */
+    border-radius: 8px; /* Rounded corners */
+    padding: 1.5rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08); /* Softer, more spread shadow */
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+}
+
+.app-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+    /* No color inversion for this theme on card hover */
+}
+
+.app-card .app-icon-placeholder {
+    width: 50px;
+    height: 50px;
+    background-color: #eaf1f8; /* Light blueish placeholder */
+    border-radius: 6px; /* Rounded icon */
+    border: none; /* No border for icon */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    color: #3498db; /* Icon text color matches theme accent */
+    align-self: flex-start;
+    font-weight: 500;
+}
+
+.app-card h2 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 0.5rem;
+    text-transform: none; /* Normal case titles */
+}
+
+.app-card p {
+    font-size: 0.9rem;
+    color: #555;
+    margin-bottom: 1.25rem;
+    flex-grow: 1;
+}
+
+.app-card .app-link {
+    display: inline-block;
+    background-color: #3498db; /* Primary blue */
+    color: #ffffff;
+    padding: 0.6rem 1.2rem;
+    text-decoration: none;
+    border-radius: 5px; /* Rounded button */
+    text-align: center;
+    font-weight: 500;
+    border: none; /* No border for button */
+    text-transform: none; /* Normal case button text */
+    align-self: flex-start;
+    transition: background-color 0.2s ease-out;
+}
+
+.app-card .app-link:hover {
+    background-color: #2980b9; /* Darker blue */
+}
+
+.page-footer {
+    text-align: center;
+    padding: 2rem 1rem;
+    margin-top: 2.5rem;
+    font-size: 0.85rem;
+    color: #7f8c8d; /* Muted text color */
+    border-top: 1px solid #e0e0e0;
+    background-color: #ffffff; /* White footer */
+}
+```javascript
+// script.js
+
+// Data for the applications
+const appsData = [
+    {
+        iconText: "U1", // Text for the placeholder icon
+        title: "Utility One",
+        description: "Core functions for daily tasks. Streamlined for maximum efficiency.",
+        link: "#app1-link"
+    },
+    {
+        iconText: "T2",
+        title: "Task Master",
+        description: "Manage your projects with raw power. No frills, just results.",
+        link: "#app2-link"
+    },
+    {
+        iconText: "D3",
+        title: "Data Crunch",
+        description: "Process information sets with brutal precision. Input, process, output.",
+        link: "#app3-link"
+    },
+    {
+        iconText: "N4",
+        title: "Network Tool",
+        description: "Interface with network protocols directly. Monitor and control data flow.",
+        link: "#app4-link"
+    }
+];
+
+// Function to create a single app card HTML string
+function createAppCard(app) {
+    return `
+        <div class="app-card">
+            <div class="app-icon-placeholder">${app.iconText || 'APP'}</div>
+            <h2>${app.title}</h2>
+            <p>${app.description}</p>
+            <a href="${app.link}" class="app-link">Access Module</a>
+        </div>
+    `;
+}
+
+// Function to render all app cards into the grid
+function renderApps() {
+    const appGridContainer = document.getElementById('appGridContainer');
+    if (!appGridContainer) {
+        console.error("Error: App grid container not found!");
+        return;
+    }
+
+    let allCardsHtml = "";
+    appsData.forEach(app => {
+        allCardsHtml += createAppCard(app);
+    });
+    appGridContainer.innerHTML = allCardsHtml;
+}
+
+// Function to set the current year in the footer
+function setFooterYear() {
+    const yearSpan = document.getElementById('currentYear');
+    if (yearSpan) {
+        yearSpan.textContent = new Date().getFullYear();
+    }
+}
+
+// Theme Switching Logic
+function setupThemeSwitcher() {
+    const themeSwitcherButton = document.getElementById('themeSwitcherButton');
+    const brutalistThemeLink = document.getElementById('theme-brutalist');
+    const cleanThemeLink = document.getElementById('theme-clean');
+
+    if (!themeSwitcherButton || !brutalistThemeLink || !cleanThemeLink) {
+        console.error("Theme switcher elements not found!");
+        return;
+    }
+
+    // Check local storage for saved theme preference
+    const currentTheme = localStorage.getItem('theme');
+    if (currentTheme === 'clean') {
+        brutalistThemeLink.disabled = true;
+        cleanThemeLink.disabled = false;
+    } else { // Default to brutalist
+        brutalistThemeLink.disabled = false;
+        cleanThemeLink.disabled = true;
+    }
+
+
+    themeSwitcherButton.addEventListener('click', () => {
+        // Toggle the disabled state of the theme stylesheets
+        if (brutalistThemeLink.disabled) {
+            // Switch to Brutalist
+            brutalistThemeLink.disabled = false;
+            cleanThemeLink.disabled = true;
+            localStorage.setItem('theme', 'brutalist');
+        } else {
+            // Switch to Clean & Modern
+            brutalistThemeLink.disabled = true;
+            cleanThemeLink.disabled = false;
+            localStorage.setItem('theme', 'clean');
+        }
+    });
+}
+
+
+// Wait for the DOM to be fully loaded before running scripts
+document.addEventListener('DOMContentLoaded', () => {
+    renderApps();
+    setFooterYear();
+    setupThemeSwitcher(); // Initialize the theme switcher
+});
