@@ -1,0 +1,90 @@
+﻿/* style.css - Base styles or styles shared across themes (can be minimal) */
+
+/* Basic Reset (can also be here or in each theme if they need different resets) */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    /*
+      Define base font family here if it's common,
+      otherwise, each theme can define its own.
+      For this example, themes will define their fonts.
+    */
+    line-height: 1.6;
+    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth theme transitions */
+    padding-bottom: 2rem; /* Ensure space for footer */
+}
+
+.page-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem; /* or whatever you have already */
+}
+
+.theme-switcher-container {
+    position: absolute;
+    top: 1rem; /* adjust as needed */
+    right: 1rem; /* flush to the right */
+    display: inline-block;
+    z-index: 10;
+}
+/*
+  Shared layout for header, main, footer could go here if they
+  don't change drastically between themes. For this example,
+  themes will control most of their specific layout aspects.
+*/
+
+.main-content {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.app-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem; /* Default gap, can be overridden by themes */
+}
+
+/* Theme switcher button base style */
+.theme-button {
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif; /* A neutral font for the button */
+    font-weight: 500;
+    border: 1px solid transparent; /* Base border */
+    margin-top: 0.5rem; /* Space from title if header is flex */
+}
+
+/* always hidden by default */
+.theme-dropdown {
+    display: none;
+}
+
+.theme-dropdown.show {
+    display: block;
+}
+
+/* show when hovering OR when the button (or any child) has focus */
+.theme-switcher-container:hover .theme-dropdown,
+.theme-switcher-container:focus-within .theme-dropdown {
+    display: block;
+}
+
+.module-container {
+    display: none;
+}
+
+    .module-container.active {
+        display: block;
+    }
+
+/*
+  The .page-header, .app-card, .page-footer specific styles
+  will be defined in the theme CSS files (brutalist.css, clean-modern.css)
+  as they are highly theme-dependent.
+*/

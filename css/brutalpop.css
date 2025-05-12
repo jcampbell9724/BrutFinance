@@ -1,0 +1,161 @@
+﻿/* brutalist.css - Brutalist Theme Styles */
+
+body {
+    font-family: 'Roboto Mono', monospace;
+    background-color: #e0e0e0;
+    color: #000000;
+}
+
+.page-header {
+    background-color: #000000;
+    color: #ffffff;
+    padding: 1.5rem 1rem;
+    text-align: center;
+    border-bottom: 4px solid #000000;
+    margin-bottom: 2rem;
+    display: flex; /* For aligning title and button */
+    flex-direction: column;
+    align-items: center;
+}
+
+    .page-header h1 {
+        font-size: 2rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        margin-bottom: 0.5rem; /* Space for button */
+    }
+
+.theme-button { /* Brutalist theme button */
+    background-color: #0000ff;
+    color: #ffffff;
+    border: 2px solid #000000;
+    text-transform: uppercase;
+    font-family: 'Roboto Mono', monospace;
+}
+
+    .theme-button:hover {
+        background-color: #ffffff;
+        color: #0000ff;
+    }
+
+/* dropdown container */
+.theme-dropdown {
+    background-color: #ffffff; /* stark white */
+    border: 3px solid #000000; /* bold black frame */
+    font-family: 'Roboto Mono', monospace; /* matches body */
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+    /* each menu item */
+    .theme-dropdown li {
+        padding: 0.75rem 1.5rem;
+        text-transform: uppercase;
+        color: #000000; /* black text */
+        cursor: pointer;
+        transition: background-color 0.1s linear, color 0.1s linear;
+    }
+
+        /* hover state (invert to your accent blue) */
+        .theme-dropdown li:hover {
+            background-color: #0000ff; /* bright blue */
+            color: #ffffff; /* white text */
+        }
+
+.app-grid {
+    gap: 2rem; /* Brutalist specific gap */
+}
+
+.app-card {
+    background-color: #ffffff;
+    border: 3px solid #000000;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    transition: background-color 0.1s linear, color 0.1s linear;
+}
+
+    .app-card:hover {
+        background-color: #000000;
+        color: #ffffff;
+    }
+
+        .app-card:hover .app-link {
+            background-color: #ffffff;
+            color: #000000;
+            border-color: #000000; /* Ensure border color is explicit */
+        }
+
+        .app-card:hover h2 {
+            color: #ffffff;
+        }
+
+        .app-card:hover .app-icon-placeholder {
+            background-color: #333333;
+            color: #ffffff;
+            border: 2px dashed #ffffff;
+        }
+
+    .app-card .app-icon-placeholder {
+        width: 50px;
+        height: 50px;
+        background-color: #cccccc;
+        border: 2px dashed #000000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 1rem;
+        font-size: 0.9rem;
+        color: #000000;
+        align-self: flex-start;
+        font-weight: 700;
+    }
+
+    .app-card h2 {
+        font-size: 1.3rem;
+        font-weight: 700;
+        color: #000000;
+        margin-bottom: 0.75rem;
+        text-transform: uppercase;
+    }
+
+    .app-card p {
+        font-size: 0.9rem;
+        color: #333333;
+        margin-bottom: 1.5rem;
+        flex-grow: 1;
+    }
+
+    .app-card:hover p {
+        color: #e0e0e0;
+    }
+
+    .app-card .app-link {
+        display: inline-block;
+        background-color: #0000ff;
+        color: #ffffff;
+        padding: 0.75rem 1.25rem;
+        text-decoration: none;
+        text-align: center;
+        font-weight: 700;
+        border: 2px solid #000000;
+        text-transform: uppercase;
+        align-self: flex-start;
+        transition: background-color 0.1s linear, color 0.1s linear;
+    }
+
+        .app-card .app-link:hover {
+            background-color: #ffffff;
+            color: #0000ff;
+        }
+
+.page-footer {
+    text-align: center;
+    padding: 1.5rem 1rem;
+    margin-top: 3rem;
+    font-size: 0.8rem;
+    color: #000000;
+    border-top: 3px solid #000000;
+    background-color: #cccccc;
+}

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My App Showcase - Multi-Theme</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <link id="theme-brutalpop" href="./css/brutalpop.css" rel="stylesheet">
+    <link id="theme-brutalist" href="./css/brutalist.css" rel="stylesheet">
+    <link id="theme-clean" href="./css/cleanmodern.css" rel="stylesheet" disabled>
+
+    <link href="./css/style.css" rel="stylesheet">
+
+</head>
+<body>
+
+    <header class="page-header">
+        <h1>App Hub</h1>
+        <div class="theme-switcher-container">
+            <button id="themeSwitcherButton"
+                    class="theme-button"
+                    aria-haspopup="true"
+                    aria-expanded="false">
+                Theme ▾
+            </button>
+            <ul class="theme-dropdown">
+                <li data-theme="brutalist">Brutalist</li>
+                <li data-theme="brutalpop">Brutal Pop</li>
+                <li data-theme="clean">Clean</li>
+            </ul>
+        </div>
+    </header>
+
+    <input id="appFilter" type="search" placeholder="Search apps…">
+
+
+    <main class="main-content">
+        <div class="app-grid" id="appGridContainer">
+        </div>
+    </main>
+
+    <div id="debtOverviewContainer" class="module-container">
+        <form id="debtForm">
+            <input type="hidden" name="debtId">
+            <input name="name" placeholder="Name" required>
+            <input name="type" placeholder="Type" required>
+            <input name="rate" type="number" step="0.01" placeholder="Rate %" required>
+            <input name="amount" type="number" placeholder="Amount" required>
+            <input name="pmt" type="number" placeholder="Payment">
+            <input name="termMonths" type="number" placeholder="Term (months)" required>
+            <input name="startDate" type="date" required>
+            <button type="submit">Save</button>
+        </form>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Type</th>
+                    <th>Rate</th>
+                    <th>PMT</th>
+                    <th>Start</th>
+                    <th>Payoff</th>
+                    <th>Prin.</th>
+                    <th>Int.</th>
+                    <th>Total</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="debtTableBody"></tbody>
+        </table>
+    </div>
+
+    <footer class="page-footer">
+        <p>&copy; <span id="currentYear"></span> COMPANY NAME. ALL SYSTEMS OPERATIONAL.</p>
+    </footer>
+
+    <script src="/js/script.js" type="module"></script>
+
+</body>
+</html>

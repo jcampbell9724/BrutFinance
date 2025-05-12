@@ -1,0 +1,145 @@
+﻿/* clean-modern.css - Clean & Modern Theme Styles */
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f4f7f9; /* Light, clean background */
+    color: #333;
+}
+
+.page-header {
+    background-color: #ffffff;
+    color: #2c3e50; /* Dark blue-gray text */
+    padding: 1.5rem 1rem; /* Ample padding */
+    text-align: center;
+    border-bottom: 1px solid #e0e0e0; /* Subtle border */
+    margin-bottom: 2.5rem;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05); /* Soft shadow */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+    .page-header h1 {
+        font-size: 2.2rem;
+        font-weight: 600; /* Slightly less bold than brutalist */
+        margin-bottom: 0.5rem;
+    }
+
+.theme-button { /* Clean & Modern theme button */
+    background-color: #3498db; /* Primary blue */
+    color: #ffffff;
+    border-radius: 5px; /* Rounded corners */
+    font-weight: 500;
+    border: 1px solid transparent;
+}
+
+    .theme-button:hover {
+        background-color: #2980b9; /* Darker blue */
+    }
+
+/* dropdown container */
+.theme-dropdown {
+    background-color: #ffffff; /* white bg */
+    border: 1px solid #dce4ec; /* light gray border */
+    border-radius: 8px; /* soft corners */
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08); /* subtle shadow */
+    font-family: 'Inter', sans-serif; /* matches body */
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+    /* each menu item */
+    .theme-dropdown li {
+        padding: 0.6rem 1.2rem;
+        color: #333333; /* dark gray text */
+        cursor: pointer;
+        transition: background-color 0.2s;
+    }
+
+        /* hover state */
+        .theme-dropdown li:hover {
+            background-color: #f4f7f9; /* very light blue-gray */
+        }
+
+
+.app-grid {
+    gap: 1.5rem; /* Standard gap */
+}
+
+.app-card {
+    background-color: #ffffff;
+    border: 1px solid #dce4ec; /* Lighter border */
+    border-radius: 8px; /* Rounded corners */
+    padding: 1.5rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08); /* Softer, more spread shadow */
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+}
+
+    .app-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+        /* No color inversion for this theme on card hover */
+    }
+
+    .app-card .app-icon-placeholder {
+        width: 50px;
+        height: 50px;
+        background-color: #eaf1f8; /* Light blueish placeholder */
+        border-radius: 6px; /* Rounded icon */
+        border: none; /* No border for icon */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 1rem;
+        font-size: 1rem;
+        color: #3498db; /* Icon text color matches theme accent */
+        align-self: flex-start;
+        font-weight: 500;
+    }
+
+    .app-card h2 {
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: #2c3e50;
+        margin-bottom: 0.5rem;
+        text-transform: none; /* Normal case titles */
+    }
+
+    .app-card p {
+        font-size: 0.9rem;
+        color: #555;
+        margin-bottom: 1.25rem;
+        flex-grow: 1;
+    }
+
+    .app-card .app-link {
+        display: inline-block;
+        background-color: #3498db; /* Primary blue */
+        color: #ffffff;
+        padding: 0.6rem 1.2rem;
+        text-decoration: none;
+        border-radius: 5px; /* Rounded button */
+        text-align: center;
+        font-weight: 500;
+        border: none; /* No border for button */
+        text-transform: none; /* Normal case button text */
+        align-self: flex-start;
+        transition: background-color 0.2s ease-out;
+    }
+
+        .app-card .app-link:hover {
+            background-color: #2980b9; /* Darker blue */
+        }
+
+.page-footer {
+    text-align: center;
+    padding: 2rem 1rem;
+    margin-top: 2.5rem;
+    font-size: 0.85rem;
+    color: #7f8c8d; /* Muted text color */
+    border-top: 1px solid #e0e0e0;
+    background-color: #ffffff; /* White footer */
+}
