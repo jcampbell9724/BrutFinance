@@ -76,12 +76,21 @@ body {
 }
 
 .module-container {
-    display: none;
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  min-height: 100vh;
+  padding: 2rem;
+  background: var(--background-color, #fff);
+  z-index: 1000;
+  overflow-y: auto;
 }
 
-    .module-container.active {
-        display: block;
-    }
+.module-container.active {
+  display: block;
+}
 
 /*
   The .page-header, .app-card, .page-footer specific styles
