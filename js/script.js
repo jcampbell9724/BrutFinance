@@ -1,12 +1,16 @@
 // Import functions from other modules
 import { renderApps, setFooterYear } from './uiManager.js';
 import { setupThemeSwitcher } from './themeManager.js';
-// If you had specific app logic, you might import it like this:
-// import { initializeFinanceCalculator } from './apps/financeCalculatorApp.js';
+import * as debtOverview from './apps/debtOverview.js';
 
-// In script.js (or themeManager.js), wrap your menu logic in a toggle:
+// Theme Switcher
 const btn = document.getElementById("themeSwitcherButton");
 const menu = document.querySelector(".theme-dropdown");
+
+// Module Registry
+const modules = {
+  debtOverview,
+};
 
 btn.addEventListener("click", e => {
   e.stopPropagation();
@@ -31,10 +35,11 @@ document.addEventListener('DOMContentLoaded', () => {
     // Setup theme switching functionality
     setupThemeSwitcher();
 
-    // Initialize individual apps if needed
-    // For example:
-    // if (document.getElementById('financeCalculatorContainer')) { // Check if the app's container exists
-    //     initializeFinanceCalculator();
-    // }
+  const container = document.getElementById('debtOverviewContainer');
+  if (container && modules.debtOverview) {
+    container.classList.add('active');
+    modules.debtOverview.init();
+  }
+  
     console.log("Main script loaded and initialized.");
 });
