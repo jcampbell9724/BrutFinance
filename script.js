@@ -1,11 +1,17 @@
 ﻿// Import functions from other modules
 import { renderApps, setFooterYear } from './uiManager.js';
 import { setupThemeSwitcher } from './themeManager.js';
+import * as debtOverview from './apps/debtOverview.js';
 import { init as initDebt } from './debtOverview.js'; // Make sure to import initDebt
 
 // Theme switcher dropdown logic
 const themeSwitcherButton = document.getElementById("themeSwitcherButton");
 const themeDropdownMenu = document.querySelector(".theme-dropdown");
+
+// Module registry
+const modules = {
+  debtOverview,
+};
 
 if (themeSwitcherButton && themeDropdownMenu) {
     themeSwitcherButton.addEventListener("click", e => {
