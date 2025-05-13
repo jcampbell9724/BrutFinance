@@ -93,4 +93,4 @@ A modular, browser-based dashboard for mini finance applications. Instantly swit
 
 ## License
 
-MIT © \[Your Name]
+MIT © 
